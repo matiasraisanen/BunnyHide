@@ -3,8 +3,10 @@ class BunnyHide
   
   require "fileutils"
 
+
   def initialize
     puts("Let's hide the bunny!")
+    $tipCounter = 1
     newGame
   end
 
@@ -57,8 +59,13 @@ class BunnyHide
     secretfile.puts("the secret bunny")
     secretfile.close
     pwd = Dir.pwd
+    setTip(rand1, rand2)
     puts("Secret file created somewhere in #{pwd}/the_folder/")
-    puts("Secret hash: " + rand1.to_s + "." + rand2.to_s)
+  end
+
+  def setTip(rand1, rand2)
+    $folder = rand1
+    $file = rand2
   end
 
   # Delete the game folder
@@ -73,7 +80,8 @@ class BunnyHide
 
   # Show a tip
   def showTip
-    puts("Secret hash: " + rand1.to_s + "." + rand2.to_s)
+    puts("Psst here is a tip: " + $folder.to_s + "/" + $file.to_s)
+    puts("")
   end
 
   # Print the selected file
@@ -86,7 +94,7 @@ class BunnyHide
     if File.foreach("the_folder/set#{set}/file#{file}.txt").any?{ |l| l['CONGRATULATIONS'] }
       puts("")
       deleteFolder
-      return false
+      $running = false
     end
     puts("")
     return true
@@ -96,10 +104,15 @@ class BunnyHide
 
   # Choose a file for printing
   def fileChooser
+    if $tipCounter == 3
+      showTip
+    end
+    puts("Round: #{$tipCounter}")
     print("Choose the file set (1-10): ")
     @set = gets.chomp!
     print("Choose the file to print (1-10): ")
     @file = gets.chomp!
+    $tipCounter += 1
     printFile(@set, @file)
 
   end
@@ -110,9 +123,9 @@ class BunnyHide
     puts("New game started")
     createFolders
     hideBunny
-    running = true
-    while running
-      running = fileChooser
+    $running = true
+    while $running
+      fileChooser
     end
   end
 
