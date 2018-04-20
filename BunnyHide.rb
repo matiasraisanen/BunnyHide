@@ -5,8 +5,9 @@ class BunnyHide
 
 
   def initialize
+
     puts("Let's hide the bunny!")
-    $tipCounter = 1
+    $turnCounter = 1
     newGame
   end
 
@@ -86,33 +87,37 @@ class BunnyHide
 
   # Print the selected file
   def printFile(set, file)
-    puts("Printing #{Dir.pwd}/the_folder/set#{set}/file#{file}.txt")
-    puts("")
-    printMe = File.open("the_folder/set#{set}/file#{file}.txt","r")
-    printMe.each_line{|row| print row}
-    printMe.close
-    if File.foreach("the_folder/set#{set}/file#{file}.txt").any?{ |l| l['CONGRATULATIONS'] }
+    begin
+      printMe = File.open("the_folder/set#{set}/file#{file}.txt","r")
       puts("")
-      deleteFolder
-      $running = false
+      puts("Printing #{Dir.pwd}/the_folder/set#{set}/file#{file}.txt")
+      printMe.each_line{|row| print row}
+      printMe.close
+      if File.foreach("the_folder/set#{set}/file#{file}.txt").any?{ |l| l['CONGRATULATIONS'] }
+        puts("")
+        deleteFolder
+        $running = false
+      end
+    rescue
+      puts("Invalid values, try again")
+      fileChooser
+    else
+      $turnCounter += 1
     end
-    puts("")
-    return true
   end
 
 
 
   # Choose a file for printing
   def fileChooser
-    if $tipCounter == 3
+    if $turnCounter == 11
       showTip
     end
-    puts("Round: #{$tipCounter}")
+    puts("Round: #{$turnCounter}")
     print("Choose the file set (1-10): ")
     @set = gets.chomp!
     print("Choose the file to print (1-10): ")
     @file = gets.chomp!
-    $tipCounter += 1
     printFile(@set, @file)
 
   end
