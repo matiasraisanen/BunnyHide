@@ -3,11 +3,13 @@ A game of hiding a bunny.
 Made using ruby.
 
 ## Building the .exe
-Longer Instructions:  
+#### Longer Instructions  
 https://ourcodeworld.com/articles/read/270/how-to-create-an-executable-exe-from-a-ruby-script-in-windows-using-ocra
 
-Shorter instructions:
+#### Shorter instructions  
+Type in command prompt:
+
 ```
 gem install ocra
-ocra BunnyHide.rb --no-dep-run
+ocra BunnyHide.rb
 ```

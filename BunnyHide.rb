@@ -5,7 +5,6 @@ class BunnyHide
 
 
   def initialize
-
     puts("Let's hide the bunny!")
     $turnCounter = 1
     newGame
@@ -135,6 +134,8 @@ class BunnyHide
   end
 
 end
+
+
 
 while true
   puts("MAIN MENU")
