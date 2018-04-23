@@ -1,6 +1,12 @@
 # BunnyHide
-A game of hiding a bunny.
+A game of finding a bunny.
 Made using ruby.
+
+## How it works
+The game creates 10 folders which contain 10 txt-files each.
+The txt-files are populated with random phrases. 
+One randomly selected file contains the secretive hiding bunny.
+It's up to the player to find this file.
 
 ## How to play
 Install Ruby and run command 
