@@ -1,15 +1,13 @@
 class BunnyHide
-  # Simple game of hiding a bunny
+  # Simple game of finding a bunny
   
   require "fileutils"
-
 
   def initialize
     puts("Let's hide the bunny!")
     $turnCounter = 1
     newGame
   end
-
 
   # Create folders, and populate the list of content for wrong files
   def createFolders
@@ -73,11 +71,6 @@ class BunnyHide
     FileUtils.rm_rf("the_folder")
   end
 
-  def endGame
-    FileUtils.rm_rf("the_folder")
-    exit()
-  end
-
   # Show a tip
   def showTip
     puts("Psst here is a tip: " + $folder.to_s + "/" + $file.to_s)
@@ -105,8 +98,6 @@ class BunnyHide
     end
   end
 
-
-
   # Choose a file for printing
   def fileChooser
     if $turnCounter == 11
@@ -121,7 +112,6 @@ class BunnyHide
 
   end
 
-
   # Start a new game
   def newGame
     puts("New game started")
@@ -132,10 +122,7 @@ class BunnyHide
       fileChooser
     end
   end
-
 end
-
-
 
 while true
   puts("MAIN MENU")
