@@ -1,5 +1,5 @@
 # BunnyHide
-A simple game I wrote in ruby.
+A simple game I wrote in ruby to make myself familiar with the language.
 
 ## How it works
 The game creates 10 folders which contain 10 txt-files each.
